@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>My first Vue.js app</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+<body>
+<div class="container" id="todo">
+	<header>
+		<h1>To do app</h1>
+	</header>
+	<section>
+		<div class="form-control main-input">
+			<label class="checkbox-label">
+				<input type="checkbox" id="mark-all" class="form-check-input" v-bind:checked="areAllSelected" v-on:click="selectAll">
+				Mark all of them	
+			</label>
+			<input type="text" placeholder="What you need to do?" autofocus v-model ="newTask" v-on:keyup.enter="addTask">
+			<button class="btn btn-primary" v-on:click="addTask">Add task</button>
+			<button class="btn btn-info" v-on:click="clearList">Clear list</button>
+		</div>
+	</section>
+	<section>
+		<ul class="list">
+			<li v-for="item in taskList">
+				<div class="form-control main-output output-list" v-bind:class="{ mark_as_done: item.checked }">
+					<label class="checkbox-label">
+		      			<input type="checkbox" class="form-check-input" v-model="item.checked">
+		      			Mark as done
+		      		</label>  
+	      			<label for="checkbox">{{item.text}}</label>
+	      			<button class=" btn btn-danger delete" v-on:click="deleteTask(item)">X</button>
+	      		</div>
+	      	</li>
+	     </ul>
+</section>
+	<div class="code-preview">
+		<pre>{{taskList}}</pre>
+	</div>
+	</div>
+</div>
+<script src="https://unpkg.com/vue@2.2.6"></script>
+<script>
+	new Vue({
+	    el: "#todo",
+	    data: {
+	        newTask: '',
+	        taskList: []
+	    },
+	    methods: {
+	        addTask: function() {
+	            var task = this.newTask.trim();
+	            if (task) {
+	                this.taskList.push({
+	                    text: task,
+	                    checked: false
+	                });
+	                this.newTask = '';
+	            }
+	        },
+	        deleteTask: function(item) {
+	            var selectedItem = this.taskList.indexOf(item);
+	            this.taskList.splice(selectedItem, 1);
+	        },
+	        clearList: function() {
+	            this.taskList = [];
+	        },
+	        selectAll: function() {
+	            var targetValue = this.areAllSelected ? false : true;
+	            for (var i = 0; i < this.taskList.length; i++) {
+	                this.taskList[i].checked = targetValue;
+	            }
+	        }
+	    },
+	    computed: {
+	        areAllSelected: function() {
+	            return this.taskList.every(function(task) {
+	                return task.checked;
+	            }) && this.taskList.length > 0;
+	        }
+	    }
+	});
+</script>
+
+</body>
+</html>
