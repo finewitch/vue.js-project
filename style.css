@@ -1,0 +1,71 @@
+*{
+	font: normal 18px Lato;
+}
+body{
+	box-sizing: border-box;
+	font-size:3em;
+}
+/*general*/
+header h1{
+	margin: 100px auto;
+	font-size: 4em;
+}
+input{
+	text-align: center;
+	font-size:1.4em;
+}
+input[type="text"]{
+	width:250px;
+}
+button{
+	width:100px;
+}
+label{
+	font-weight: 200;
+}
+.container{
+	text-align: center;
+	margin-top:5%;
+}
+.main-input{
+	width:70%;
+	margin: 0 auto;
+	height: auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.main-output{
+	width:70%;
+	margin: 0 auto;
+	height: auto;
+}
+ul, li{
+	list-style-type: none;
+	margin: 0;
+  	padding: 0;
+  	border: 0;
+}
+.output-list{
+	display: flex;
+	justify-content: space-between;
+}
+.checkbox-label{
+	width:200px;
+	height:25px;
+}
+/*bootstrap-ext*/
+.form-control {
+    padding: 16px 12px;
+    margin: 7px auto;
+}
+.code-preview{
+	width:70%;
+	margin: 100px auto;
+}
+.btn{
+	font-size:1.2em;
+}
+.mark_as_done{
+	background-color: rgba(190, 239, 179, 0.8);
+}
